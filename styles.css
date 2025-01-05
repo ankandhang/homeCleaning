@@ -1,4 +1,56 @@
 /* General Reset */
+#preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+.btn-primary {
+    background-color: #4CAF50; /* Initial background */
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease; /* Smooth transition */
+}
+
+.btn-primary:hover {
+    background-color: #45a049; /* Change background */
+    transform: scale(1.1); /* Slightly enlarge the button */
+}
+
+
+/* Progress bar container */
+#progress-container {
+    width: 80%;
+    max-width: 400px;
+    background-color: #f3f3f3;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Progress bar */
+#progress-bar {
+    height: 20px;
+    width: 0;
+    background-color: #4caf50;
+    border-radius: 20px;
+    transition: width 0.3s ease-in-out;
+}
+
+/* Hide page content until loaded */
+#content {
+    display: none;
+}
 * {
     margin: 0;
     padding: 0;
@@ -10,6 +62,7 @@ body {
     line-height: 1.6;
     background: #e8ebed;
     color: #333;
+    background-image: url("bgimage.jpg");
 }
 
 .container {
@@ -58,7 +111,7 @@ body {
     justify-content: center;
     align-items: center;
     text-align: center;
-    color: rgb(13, 194, 203);
+    color: rgb(0, 9, 9);
 }
 
 .hero-content h1 {
@@ -113,7 +166,7 @@ body {
     padding: 20px;
     border-radius: 10px;
     width: 250px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 6px rgba(0, 1, 1, 0.1);
 }
 
 .feature-item img {
