@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Cleaning Services, Inc</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .header {
+            background-color: #2c3e50;
+            color: white;
+            padding: 10px 0;
+            text-align: center;
+        }
+        .header .nav {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        .header .nav a {
+            color: white;
+            text-decoration: none;
+        }
+        .contact-section {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px;
+        }
+        .contact-section img {
+            max-width: 100%;
+            height: auto;
+        }
+        .form-section, .info-section {
+            width: 45%;
+        }
+        .form-section form {
+            display: flex;
+            flex-direction: column;
+        }
+        .form-section form input, .form-section form textarea {
+            margin-bottom: 10px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .form-section form button {
+            padding: 10px;
+            background-color: #27ae60;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .info-section {
+            padding: 20px;
+            background-color: #ecf0f1;
+            border-radius: 5px;
+        }
+        .info-section img {
+            max-width: 100%;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>CLEANING SERVICES, INC</h1>
+        <div>
+            <p>GET STARTED TODAY! <strong>(800) 786-3838</strong> <button href="book.html">BOOK NOW</button></p>
+        </div>
+    </div>
+    <div class="contact-section">
+        <div class="form-section">
+            <h2>LET US CONTACT YOU!</h2>
+            <form>
+                <input type="text" name="name" class="name" placeholder="Your Name">
+                <input type="text" name="phone" class="phone" placeholder="Phone Number">
+                <input type="email" name="email" class="email" placeholder="Email">
+                <textarea name="message" class="message" placeholder="Message"></textarea>
+                <button type="submit">SUBMIT</button>
+            </form>
+        </div>
+        <div class="info-section">
+            <h2>GET IN TOUCH</h2>
+            <p>Phone:8597938227 </p>
+            <p>E-Mail: homeservice@gmail.com</p>
+            <p>Office Hours: Monday to Friday 8:00 a.m. - 10:30 p.m.</p>
+            <img src="https://www.viccleaning.com.au/wp-content/uploads/2023/01/house-cleaning.jpg" alt="Office Image">
+        </div>
+    </div>
+    <script>
+        document.getElementsByClassName('contact-section').addEventListener('submit', function(event) {
+          event.preventDefault();
+    
+          const name = document.getElementsByClassName('name').value;
+          const email = document.getElementsByClassName('email').value;
+          const phone = document.getElementsByClassName('phone').value;
+          const message = document.getElementsByClassName('message').value;
+    
+          alert(`Thank you, ${name}!\nYour booking for ${service} on ${date} has been received.\nWe will contact you at ${email} or ${phone} soon.`);
+    
+          document.getElementsByClassName('contact-section').reset();
+        });
+    </script>
+</body>
+</html>
