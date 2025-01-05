@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Cleaning Service - Home</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .content {
+            padding: 20px;
+        }
+        .footer {
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+        /* Slideshow container */
+        .slideshow-container {
+            position: relative;
+            max-width: 100%;
+            margin: auto;
+            height: 300px;
+            width: 300px;
+        }
+        /* Hide the images by default */
+        .mySlides {
+            display: none;
+        }
+        /* Fading animation */
+        .fade {
+            animation-name: fade;
+            animation-duration: 1.5s;
+        }
+        @keyframes fade {
+            from {opacity: 0.4} 
+            to {opacity: 1}
+        }
+        /* Next & previous buttons */
+        .prev, .next {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            width: auto;
+            margin-top: -22px;
+            padding: 16px;
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+            transition: 0.6s ease;
+            border-radius: 0 3px 3px 0;
+        }
+        .next {
+            right: 0;
+            border-radius: 3px 0 0 3px;
+        }
+        /* Caption text */
+        .text {
+            color: #f2f2f2;
+            font-size: 15px;
+            padding: 8px 12px;
+            position: absolute;
+            bottom: 8px;
+            width: 100%;
+            text-align: center;
+        }
+        /* Number text (1/3 etc) */
+        .numbertext {
+            color: #f2f2f2;
+            font-size: 12px;
+            padding: 8px 12px;
+            position: absolute;
+            top: 0;
+        }
+       
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Welcome to Our Cleaning Service</h1>
+    </div>
+    <div class="content">
+        <center>
+        <h2>Your Home, Our Priority</h2>
+        <p>We provide professional cleaning services to make your home sparkling clean. Our team of experienced cleaners is dedicated to delivering top-notch service to meet your needs.
+            We offer a wide range of cleaning services designed to keep your home sparkling clean and sanitized. From one-time deep cleans to regular maintenance cleanings, we've got you covered. Our services include residential cleaning, commercial cleaning, move-in/move-out cleaning, and special event cleaning.</p>
+        </center>
+        <!-- Slideshow container -->
+        <div class="slideshow-container">
+            <div class="mySlides fade">
+                <div class="numbertext">1 / 3</div>
+                <img src="https://www.ecomaids.com/portland/wp-content/uploads/sites/4/2021/02/EcomaidsWideCounter1080-768x768-1.jpg" style="width: 87%;">
+                <div class="text">Our Cleaning Team</div>
+            </div>
+
+            <div class="mySlides fade">
+                <div class="numbertext">2 / 3</div>
+                <img src="https://www.healthyhomesutah.com/wp-content/uploads/Professional-House-Cleaning-Services-in-North-Ogden-Utah.jpg" style="width: 87%;">
+                <div class="text">Cleaning Process</div>
+            </div>
+
+            <div class="mySlides fade">
+                <div class="numbertext">3 / 3</div>
+                <img src="https://th.bing.com/th/id/R.c679ac35c9d6fdbb3c8e31fbd0c5f13a?rik=0IZtd3VnU27rDQ&riu=http%3a%2f%2feastsidehomecleaning.com%2fwp-content%2fuploads%2f2020%2f11%2fEuro-Clean-Agency-House-Cleaning-2-1.jpg&ehk=4tGSlF3TQFJKr47ie5%2fymkYYY93NcUyG1bfvfgca%2fcA%3d&risl=&pid=ImgRaw&r=0" style="width: 87%;">
+                <div class="text">Cleaning Tools</div>
+            </div>
+            <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+            <a class="next" onclick="plusSlides(1)">&#10095;</a>
+            </div>
+        <center>
+        <h3>Why do you hire us?</h3>
+           <p> Our Home cleaning app specialize in providing the cleaning services 
+            as well as dry cleaning services on a daily, weekly monthly basis to the <br>
+            customers for a clean, dirt-free & toxin-free atmosphere inside or outside the
+            residential and office space that enables our customers to focus on their core <br>
+            area of the business and increase their performance.
+            
+            Experienced as well as customer-friendly technicians.<br>
+            During the cleaning process, we maintain hygiene by using all advanced technologies.
+            We take care of dust removal and try to minimize disease or infection which causes <br>
+            due to unhygienic conditions in the residential, office & other areas.
+            We are ready to serve at any time<br>
+            Flexible booking time slots</p>
+        <br>
+
+        <p>Contact us today to schedule your cleaning!</p>
+        </center>
+    </div>
+    <div class="footer">
+        <p>&copy; 2025 Cleaning Service. All rights reserved.</p>
+    </div>
+
+    <script>
+        let slideIndex = 0;
+        showSlides();
+
+        function showSlides() {
+            let i;
+            let slides = document.getElementsByClassName("mySlides");
+            for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";  
+            }
+            slideIndex++;
+            if (slideIndex > slides.length) {slideIndex = 1}    
+            slides[slideIndex-1].style.display = "block";  
+            setTimeout(showSlides, 3000); // Change image every 3 seconds
+        }
+
+        function plusSlides(n) {
+            slideIndex += n;
+            showSlides();
+        }
+    </script>
+</body>
+</html>
