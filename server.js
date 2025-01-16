@@ -18,6 +18,8 @@ app.use(session({
     cookie: { secure: false } // Set to 'true' in production with HTTPS
 }));
 
+
+
 // Database connection
 const db = mysql.createConnection({
     host: process.env.DB_HOST,
@@ -32,6 +34,9 @@ db.connect(err => {
     if (err) throw err;
     console.log('Connected to database');
 });
+
+// Static files (for CSS and HTML pages)
+app.use(express.static('public'));
 
 // Home Route (for Logged-In and Guest Users)
 app.get('/', (req, res) => {
@@ -139,6 +144,59 @@ app.get('/signup.html', (req, res) => {
     res.sendFile(__dirname + '/public/signup.html');
 });
 
+
+
+// Guest Home Page - If user is logged in, redirect to /home
+app.get('/home-guest', (req, res) => {
+    if (req.session.user) {
+        return res.redirect('/home'); // Redirect to home if logged in
+    }
+    res.sendFile(__dirname + '/public/home-guest.html'); // Show guest home page if not logged in
+});
+// Logout Route
+app.get('/logout', (req, res) => {
+    req.session.destroy(() => {
+        res.redirect('/home-guest'); // Redirect to guest home page after logout
+    });
+});
+
+
+//
+app.get('/about.html', (req, res) => {
+    res.sendFile(__dirname + '/public/about.html');
+});
+
+//
+app.get('/services.html', (req, res) => {
+    res.sendFile(__dirname + '/public/services.html');
+});
+
+
+app.get('/price.html', (req, res) => {
+    res.sendFile(__dirname + '/public/price.html');
+});
+
+app.get('/contact.html', (req, res) => {
+    res.sendFile(__dirname + '/public/contact.html');
+});
+
+
+app.get('/homes.html', (req, res) => {
+    res.sendFile(__dirname + '/public/homes.html');
+});
+
+// Book
+app.get('/book.html', (req, res) => {
+    // Check if the user is already logged in
+    if (req.session.user) {
+        return res.sendFile(__dirname + '/public/book.html'); // If logged in, redirect to home page
+    }
+    res.sendFile(__dirname + '/public/login.html');
+});
+
+
+
+
 // Home Route for Logged-in Users
 app.get('/home', (req, res) => {
     if (req.session.user) {
@@ -148,29 +206,40 @@ app.get('/home', (req, res) => {
     }
 });
 
-// Guest Home Page - If user is logged in, redirect to /home
-app.get('/home-guest', (req, res) => {
-    if (req.session.user) {
-        return res.redirect('/home'); // Redirect to home if logged in
+app.get('/style.css', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'css', 'style.css'));
+  });
+  // Submit booking route
+app.post('/submit', (req, res) => {
+    // Check if the user is logged in
+    if (!req.session.user) {
+        return res.redirect('/login.html'); // If not logged in, redirect to login
     }
-    res.sendFile(__dirname + '/public/home-guest.html'); // Show guest home page if not logged in
-});
+    const { name, email, phone, service, date, message } = req.body;
+    
+    console.log(`Received booking request from ${req.body.name} for ${req.body.service}`);
+    // SQL query to insert the booking data into the database
+    const insertQuery = `
+        INSERT INTO bookings ( name, email, phone, service, date, message) 
+        VALUES (?, ?, ?, ?, ?, ?)
+    `;
 
+    db.query(insertQuery, [name, email, phone, service, date, message], (err, result) => {
+        if (err) {
+            console.error('Error inserting data:', err);
+            return res.status(500).send('Server error');
+        }
 
-// Logout Route
-app.get('/logout', (req, res) => {
-    req.session.destroy(() => {
-        res.redirect('/home-guest'); // Redirect to guest home page after logout
+        // Respond with a confirmation message
+        res.send(`Thank you, ${name}! Your booking for ${service} on ${date} has been received.`);
     });
 });
 
+  
 // Catch-all route for undefined pages (404 - Not Found)
 app.use((req, res) => {
-  res.status(404).send('Page not found'); // You can customize this message or render an HTML error page
-});
-
-// Static files (for CSS and HTML pages)
-app.use(express.static('public'));
+    res.status(404).send('Page not found'); 
+  });
 
 app.listen(port, () => {
     console.log(`Server running on http://localhost:${port}`);
